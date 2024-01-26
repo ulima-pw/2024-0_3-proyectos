@@ -3,8 +3,19 @@ import { Container, ListItemIcon } from "@mui/material"
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import MenuIcon from '@mui/icons-material/Menu';
 import StarIcon from '@mui/icons-material/Star';
+import { useState } from "react";
 
 const MainPage = () => {
+    const [drawerOpen, setDrawerOpen] = useState(false)
+
+    const onMenuIconClick = () => {
+        setDrawerOpen(true)
+    }
+
+    const onMenuClose = () => {
+        setDrawerOpen(false)
+    }
+
     return <Box>
         <AppBar position="static">
             <Toolbar>
@@ -14,8 +25,9 @@ const MainPage = () => {
                     color="inherit"
                     aria-label="menu"
                     sx={{ mr: 2 }}
+                    onClick={ onMenuIconClick }
                 >
-                <MenuIcon />
+                    <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Equipos
@@ -25,7 +37,8 @@ const MainPage = () => {
         </AppBar>
         <Drawer variant="temporary"
             anchor="left"
-            open={false}>
+            onClose={ onMenuClose }
+            open={ drawerOpen }>
             <List>
                 <ListItem>
                     <ListItemText primary={"Menu 1"} />
