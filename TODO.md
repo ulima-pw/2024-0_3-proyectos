@@ -1,6 +1,6 @@
 # Aplicativo de calificación de Proyectos
 
-## Actividad 1
+## Actividad 1 (Login Page)
 
 Implementar formulario de login y de registro. En el formulario de login deberá de ingresar un correo y un password y validarlo versus el archivo
 usuarios.json. En caso que no haya un usuario debe mostrar un mensaje de error. Caso de éxito, ir a una nueva pantalla llamada MainPage.
@@ -20,4 +20,8 @@ Al querer crear un nuevo equipo, debe de abrirse una ventana modal para poder cr
 
 ## Actividad 4 (Listado de Requerimientos)
 
-Esta pantalla debe de abrirse al hacer click en el menú de Requerimientos.
+Esta pantalla debe de abrirse al hacer click en el menú de Requerimientos. Esta pantalla debe mostrar una lista de requerimientos pero con la opción de poder agregar o quitar más requerimientos. Además debe poder agregar la complejidad de estos.
+
+## Actividad 5 (Asignar tareas)
+
+En esta pantalla debe de visualizarse un combobox con la lista de equipos registrados. Al seleccionar un equipo, debe de cargarse la lista de requerimientos con su responsable. Cada responsable irá en un combobox y este podrá modificarse. Además por cada requerimiento deberá de guardarse una calificación de 0 a 4 (también por combobox.)
