@@ -21,7 +21,7 @@ const TablaIntegrantes = (props) => {
             </TableHead>
             <TableBody>
                 {
-                    props.integrantes.map((integrante) => {
+                    props.integrantes.map((integrante, index) => {
                         return <TableRow>
                             <TableCell>
                                 { integrante.nombre }
@@ -30,7 +30,10 @@ const TablaIntegrantes = (props) => {
                                 { integrante.codigo }
                             </TableCell>
                             <TableCell>
-                                <IconButton>
+                                <IconButton
+                                    onClick={ () => {
+                                        props.eliminarIntegranteOnClick(index)
+                                    } }>
                                     <DeleteIcon />
                                 </IconButton>
                             </TableCell>

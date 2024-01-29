@@ -32,6 +32,12 @@ const ModalFormularioEquipo = (props) => {
         setCodigoIntegrante("")
     }
 
+    const eliminarIntegranteOnClick = (indiceAEliminar) => {
+        const listaClonada = [...listaIntegrantes]
+        listaClonada.splice(indiceAEliminar, 1)
+        setListaIntegrantes(listaClonada)
+    }
+
     return <Dialog
         open={ props.modalOpen }
         onClose={ props.onModalClose }>
@@ -57,7 +63,8 @@ const ModalFormularioEquipo = (props) => {
                 onClick={ agregarIntegranteOnClick }>
                 +
             </Button>
-            <TablaIntegrantes integrantes={ listaIntegrantes }/>
+            <TablaIntegrantes integrantes={ listaIntegrantes }
+                eliminarIntegranteOnClick={ eliminarIntegranteOnClick }/>
 
         </DialogContent>
         <DialogActions>
