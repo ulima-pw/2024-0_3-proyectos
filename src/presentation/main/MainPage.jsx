@@ -1,9 +1,7 @@
 import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions } from "@mui/material"
 import { Container, ListItemIcon } from "@mui/material"
-import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
-import CardEquipo from "./components/CardEquipo";
 import GrillaEquipos from "./components/GrillaEquipos";
 import dataEquipos from "../../data/equipos"
 
