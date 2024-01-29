@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, CardActions } from "@mui/material"
+import { Card, CardContent, Typography, CardActions, Button } from "@mui/material"
 import ListaEquipoIntegrantes from "./ListaEquipoIntegrantes"
 
 const CardEquipo = (props) => {
@@ -9,7 +9,11 @@ const CardEquipo = (props) => {
             </Typography>
             <ListaEquipoIntegrantes integrantes={ props.listaIntegrantes}/>
         </CardContent>
-        <CardActions></CardActions>
+        <CardActions>
+            <Button variant="text">
+                Tareas
+            </Button>
+        </CardActions>
     </Card>
 }
 

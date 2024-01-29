@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material"
 import { Container, ListItemIcon } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
@@ -7,13 +7,22 @@ import dataEquipos from "../../data/equipos"
 
 const MainPage = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
 
     const onMenuIconClick = () => {
         setDrawerOpen(true)
     }
 
+    const onModalOpenClick = () => {
+        setModalOpen(true)
+    }
+
     const onMenuClose = () => {
         setDrawerOpen(false)
+    }
+
+    const onModalClose = () => {
+        setModalOpen(false)
     }
 
     return <Box>
@@ -49,8 +58,33 @@ const MainPage = () => {
             </List>
         </Drawer>
         <Container sx={ { mt : 2 }}>
+            <Button variant="contained"
+                sx={ { mb : 2 } }
+                onClick={ onModalOpenClick }>
+                +
+            </Button>
             <GrillaEquipos listaEquipos={ dataEquipos }/>
         </Container>
+
+        { /* Modal */  }
+        <Dialog
+            open={ modalOpen }
+            onClose={ onModalClose }>
+            <DialogTitle >
+                Nuevo Equipo
+            </DialogTitle>
+            <DialogContent>
+                Aca ira el formulario
+            </DialogContent>
+            <DialogActions>
+                <Button variant="contained">
+                    Guardar
+                </Button>
+                <Button variant="contained">
+                    Cancelar
+                </Button>
+            </DialogActions>
+        </Dialog>
     </Box>
 }
 
