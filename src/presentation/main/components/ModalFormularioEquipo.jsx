@@ -5,6 +5,7 @@ import { useState } from "react";
 import TablaIntegrantes from "./TablaIntegrantes";
 
 const ModalFormularioEquipo = (props) => {
+    const [nombreEquipo, setNombreEquipo] = useState("")
     const [nombreIntegrante, setNombreIntegrante] = useState("")
     const [codigoIntegrante, setCodigoIntegrante] = useState("")
     const [listaIntegrantes, setListaIntegrantes] = useState([])
@@ -15,6 +16,10 @@ const ModalFormularioEquipo = (props) => {
 
     const onCodigoIntegranteChangeHandler = (event) => {
         setCodigoIntegrante(event.target.value)
+    }
+
+    const onNombreEquipoChangeHandler = (event) => {
+        setNombreEquipo(event.target.value)
     }
 
     const agregarIntegranteOnClick = () => {
@@ -45,8 +50,10 @@ const ModalFormularioEquipo = (props) => {
             Nuevo Equipo
         </DialogTitle>
         <DialogContent>
-            <TextField label="Nombre"
-                variant="outlined" />
+            <TextField label="Nombre Equipo"
+                variant="outlined"
+                value={ nombreEquipo }
+                onChange={ onNombreEquipoChangeHandler } />
             <hr />
             <h4>Integrantes</h4>
             <TextField label="Nombre Integrante"
