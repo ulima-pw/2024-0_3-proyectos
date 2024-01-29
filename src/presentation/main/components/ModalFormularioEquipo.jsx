@@ -17,6 +17,21 @@ const ModalFormularioEquipo = (props) => {
         setCodigoIntegrante(event.target.value)
     }
 
+    const agregarIntegranteOnClick = () => {
+        if (nombreIntegrante == "" || codigoIntegrante == "") {
+            return
+        }
+
+        const listaClonada = [...listaIntegrantes] // clonamos
+        listaClonada.push({
+            nombre : nombreIntegrante,
+            codigo : codigoIntegrante
+        })
+        setListaIntegrantes(listaClonada)
+        setNombreIntegrante("")
+        setCodigoIntegrante("")
+    }
+
     return <Dialog
         open={ props.modalOpen }
         onClose={ props.onModalClose }>
@@ -38,7 +53,8 @@ const ModalFormularioEquipo = (props) => {
                 sx={ { mr : 1 } }
                 value={ codigoIntegrante }
                 onChange={ onCodigoIntegranteChangeHandler } />
-            <Button variant="contained">
+            <Button variant="contained"
+                onClick={ agregarIntegranteOnClick }>
                 +
             </Button>
             <TablaIntegrantes integrantes={ listaIntegrantes }/>

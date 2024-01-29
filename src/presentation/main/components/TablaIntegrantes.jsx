@@ -1,7 +1,7 @@
 import { IconButton, 
     Table, TableBody, TableCell, TableContainer, TableHead, 
     TableRow} from "@mui/material"
-import StarIcon from '@mui/icons-material/Star';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const TablaIntegrantes = (props) => {
     return <TableContainer>
@@ -31,7 +31,7 @@ const TablaIntegrantes = (props) => {
                             </TableCell>
                             <TableCell>
                                 <IconButton>
-                                    <StarIcon />
+                                    <DeleteIcon />
                                 </IconButton>
                             </TableCell>
                         </TableRow>
