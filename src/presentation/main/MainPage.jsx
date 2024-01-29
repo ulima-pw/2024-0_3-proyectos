@@ -2,8 +2,10 @@ import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, L
 import { Container, ListItemIcon } from "@mui/material"
 import Grid from '@mui/material/Unstable_Grid2'; // Grid version 2
 import MenuIcon from '@mui/icons-material/Menu';
-import StarIcon from '@mui/icons-material/Star';
 import { useState } from "react";
+import CardEquipo from "./components/CardEquipo";
+import GrillaEquipos from "./components/GrillaEquipos";
+import dataEquipos from "../../data/equipos"
 
 const MainPage = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -49,104 +51,7 @@ const MainPage = () => {
             </List>
         </Drawer>
         <Container sx={ { mt : 2 }}>
-            <Grid container spacing={2}>
-                <Grid xs={4}>
-                    <Card variant="outlined">
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Equipo 1
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Cristiano Ronaldo"} />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Lionel Messi"} />
-                                </ListItem>
-                            </List>
-                        </CardContent>
-                        <CardActions></CardActions>
-                    </Card>
-                </Grid>
-                <Grid xs={4}>
-                    <Card variant="outlined">
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Equipo 2
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Cristiano Ronaldo"} />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Lionel Messi"} />
-                                </ListItem>
-                            </List>
-                        </CardContent>
-                        <CardActions></CardActions>
-                    </Card>
-                </Grid>
-                <Grid xs={4}>
-                    <Card variant="outlined">
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Equipo 3
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Cristiano Ronaldo"} />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Lionel Messi"} />
-                                </ListItem>
-                            </List>
-                        </CardContent>
-                        <CardActions></CardActions>
-                    </Card>
-                </Grid>
-                <Grid xs={4}>
-                    <Card variant="outlined">
-                        <CardContent>
-                            <Typography variant="h5" component="div">
-                                Equipo 4
-                            </Typography>
-                            <List>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Cristiano Ronaldo"} />
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <StarIcon />
-                                    </ListItemIcon>
-                                    <ListItemText primary={"Lionel Messi"} />
-                                </ListItem>
-                            </List>
-                        </CardContent>
-                        <CardActions></CardActions>
-                    </Card>
-                </Grid>
-            </Grid>
+            <GrillaEquipos listaEquipos={ dataEquipos }/>
         </Container>
     </Box>
 }

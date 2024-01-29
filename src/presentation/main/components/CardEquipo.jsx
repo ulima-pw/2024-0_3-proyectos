@@ -1,0 +1,16 @@
+import { Card, CardContent, Typography, CardActions } from "@mui/material"
+import ListaEquipoIntegrantes from "./ListaEquipoIntegrantes"
+
+const CardEquipo = (props) => {
+    return <Card variant="outlined">
+        <CardContent>
+            <Typography variant="h5" component="div">
+                { props.nombreEquipo }
+            </Typography>
+            <ListaEquipoIntegrantes integrantes={ props.listaIntegrantes}/>
+        </CardContent>
+        <CardActions></CardActions>
+    </Card>
+}
+
+export default CardEquipo
