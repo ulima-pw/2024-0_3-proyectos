@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, 
-    Table, TableBody, TableCell, TableContainer, TableHead, 
-    TableRow, TextField } from "@mui/material"
+    TextField } from "@mui/material"
+
+import TablaIntegrantes from "./TablaIntegrantes";
 
 const ModalFormularioEquipo = (props) => {
     return <Dialog
@@ -23,26 +24,7 @@ const ModalFormularioEquipo = (props) => {
             <Button variant="contained">
                 +
             </Button>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>
-                                Nombre
-                            </TableCell>
-                            <TableCell>
-                                Código
-                            </TableCell>
-                            <TableCell>
-                                Acciones
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        No hay integrantes
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            <TablaIntegrantes />
 
         </DialogContent>
         <DialogActions>
