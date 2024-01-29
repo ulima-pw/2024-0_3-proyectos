@@ -3,7 +3,7 @@ import { IconButton,
     TableRow} from "@mui/material"
 import StarIcon from '@mui/icons-material/Star';
 
-const TablaIntegrantes = () => {
+const TablaIntegrantes = (props) => {
     return <TableContainer>
         <Table>
             <TableHead>
@@ -20,19 +20,25 @@ const TablaIntegrantes = () => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                <TableRow>
-                    <TableCell>
-                        Edgard
-                    </TableCell>
-                    <TableCell>
-                        20132323
-                    </TableCell>
-                    <TableCell>
-                        <IconButton>
-                            <StarIcon />
-                        </IconButton>
-                    </TableCell>
-                </TableRow>
+                {
+                    props.integrantes.map((integrante) => {
+                        return <TableRow>
+                            <TableCell>
+                                { integrante.nombre }
+                            </TableCell>
+                            <TableCell>
+                                { integrante.codigo }
+                            </TableCell>
+                            <TableCell>
+                                <IconButton>
+                                    <StarIcon />
+                                </IconButton>
+                            </TableCell>
+                        </TableRow>
+                    })
+                }
+
+                
             </TableBody>
         </Table>
     </TableContainer>
