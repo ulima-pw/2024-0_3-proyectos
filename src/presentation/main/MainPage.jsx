@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
 import GrillaEquipos from "./components/GrillaEquipos";
 import dataEquipos from "../../data/equipos"
+import ModalFormularioEquipo from "./components/ModalFormularioEquipo";
 
 const MainPage = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -67,24 +68,9 @@ const MainPage = () => {
         </Container>
 
         { /* Modal */  }
-        <Dialog
-            open={ modalOpen }
-            onClose={ onModalClose }>
-            <DialogTitle >
-                Nuevo Equipo
-            </DialogTitle>
-            <DialogContent>
-                Aca ira el formulario
-            </DialogContent>
-            <DialogActions>
-                <Button variant="contained">
-                    Guardar
-                </Button>
-                <Button variant="contained">
-                    Cancelar
-                </Button>
-            </DialogActions>
-        </Dialog>
+        <ModalFormularioEquipo 
+            modalOpen={ modalOpen }
+            onModalClose={ onModalClose }/>
     </Box>
 }
 
