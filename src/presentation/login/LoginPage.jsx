@@ -1,7 +1,6 @@
 import { Box, Button, Container, TextField, Alert } from "@mui/material"
 import CheckIcon from "@mui/icons-material/Check"
 import { useState } from "react"
-import dataUsuarios from "../../data/usuarios"
 import { useNavigate } from "react-router-dom"
 
 

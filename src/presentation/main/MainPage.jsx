@@ -13,14 +13,18 @@ const MainPage = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
 
-    const obtenerEquiposHTTP = () => {    
-        fetch("http://localhost:3000/equipos.json").then( (response) => {
+    const obtenerEquiposHTTP = async () => {    
+        /*fetch("http://localhost:3000/equipos.json").then( (response) => {
             return response.json()
         }).then( (data) => {
             setDataEquipos(data)
         } ).catch( (error) => {
             console.error(error)
-        } )
+        } )*/
+
+        const response = await fetch("http://localhost:3000/equipos.json")
+        const data = await response.json()
+        setDataEquipos(data)
     }
 
     const onMenuIconClick = () => {
