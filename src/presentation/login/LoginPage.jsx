@@ -1,6 +1,6 @@
 import { Box, Button, Container, TextField, Alert } from "@mui/material"
 import CheckIcon from "@mui/icons-material/Check"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 
@@ -8,6 +8,13 @@ const LoginPage = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loginIncorrecto, setLoginIncorrecto] = useState(false)
+    const [dataUsuarios, setDataUsuarios] = useState([])
+
+    const obtenerUsuariosHTTP = async () => {
+        const response = await fetch("http://localhost:3000/usuarios.json")
+        const data = await response.json()
+        setDataUsuarios(data)
+    }
 
     // Creamos objeto para navegacion programatica
     const navigate = useNavigate()
@@ -39,6 +46,10 @@ const LoginPage = () => {
             setLoginIncorrecto(true)
         }
     }
+
+    useEffect(() => {
+        obtenerUsuariosHTTP()
+    }, [])
 
     return <Container maxWidth="sm">
         <Box component="form"
