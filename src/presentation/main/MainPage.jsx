@@ -1,14 +1,27 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Card, CardContent, CardActions, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material"
-import { Container, ListItemIcon } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button } from "@mui/material"
+import { Container } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GrillaEquipos from "./components/GrillaEquipos";
-import dataEquipos from "../../data/equipos"
 import ModalFormularioEquipo from "./components/ModalFormularioEquipo";
 
+
+
+
 const MainPage = () => {
+    const [dataEquipos, setDataEquipos] = useState([])
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
+
+    const obtenerEquiposHTTP = () => {    
+        fetch("http://localhost:3000/equipos.json").then( (response) => {
+            return response.json()
+        }).then( (data) => {
+            setDataEquipos(data)
+        } ).catch( (error) => {
+            console.error(error)
+        } )
+    }
 
     const onMenuIconClick = () => {
         setDrawerOpen(true)
@@ -25,6 +38,10 @@ const MainPage = () => {
     const onModalClose = () => {
         setModalOpen(false)
     }
+
+    useEffect(() => {
+        obtenerEquiposHTTP()
+    }, [])
 
     return <Box>
         <AppBar position="static">
@@ -50,10 +67,10 @@ const MainPage = () => {
             onClose={ onMenuClose }
             open={ drawerOpen }>
             <List>
-                <ListItem>
+                <ListItem key={"menu1"}>
                     <ListItemText primary={"Menu 1"} />
                 </ListItem>
-                <ListItem>
+                <ListItem key={"menu2"}>
                     <ListItemText primary={"Menu 1"} />
                 </ListItem>
             </List>
