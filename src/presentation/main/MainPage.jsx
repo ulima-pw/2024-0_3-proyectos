@@ -27,6 +27,10 @@ const MainPage = () => {
 
         const response = await fetch("http://localhost:3000/equipos.json")
         const data = await response.json()
+
+        const listaEquiposStr = JSON.stringify(data)
+        localStorage.setItem("EQUIPOS", listaEquiposStr)
+
         setDataEquipos(data)
     }
 
@@ -47,7 +51,13 @@ const MainPage = () => {
     }
 
     useEffect(() => {
-        obtenerEquiposHTTP()
+        const equiposStr = localStorage.getItem("EQUIPOS")
+        if (equiposStr == null) {
+            obtenerEquiposHTTP()
+        }else {
+            const equipos = JSON.parse(equiposStr)
+            setDataEquipos(equipos)
+        }
     }, [])
 
     return <Box>
@@ -64,7 +74,7 @@ const MainPage = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    { `Equipos (${ location.state.username })` }
+                    { `Equipos (${ localStorage.getItem("USERNAME") })` }
                 </Typography>
 
             </Toolbar>

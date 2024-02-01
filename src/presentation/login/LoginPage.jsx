@@ -35,6 +35,10 @@ const LoginPage = () => {
         if (listaFiltrada.length > 0) {
             // Hay por lo menos un usuario
             console.log("Login correcto")
+
+            // Almacenando en localStorage
+            localStorage.setItem("USERNAME", username)
+
             navigate("/main", {
                 state : {
                     username : username
