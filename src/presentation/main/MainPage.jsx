@@ -4,7 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from "react";
 import GrillaEquipos from "./components/GrillaEquipos";
 import ModalFormularioEquipo from "./components/ModalFormularioEquipo";
-import { useLocation } from "react-router-dom";
+//import { useLocation } from "react-router-dom";
 
 
 
@@ -14,7 +14,7 @@ const MainPage = () => {
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
 
-    const location = useLocation()
+    //const location = useLocation()
 
     const obtenerEquiposHTTP = async () => {    
         /*fetch("http://localhost:3000/equipos.json").then( (response) => {
