@@ -10,14 +10,16 @@ const LoginPage = () => {
     const [loginIncorrecto, setLoginIncorrecto] = useState(false)
     const [dataUsuarios, setDataUsuarios] = useState([])
 
+    // Creamos objeto para navegacion programatica
+    const navigate = useNavigate()
+
     const obtenerUsuariosHTTP = async () => {
         const response = await fetch("http://localhost:3000/usuarios.json")
         const data = await response.json()
         setDataUsuarios(data)
     }
 
-    // Creamos objeto para navegacion programatica
-    const navigate = useNavigate()
+    
 
     const usernameOnChangeHandler = (event) => {
         setUsername(event.target.value)
@@ -37,7 +39,7 @@ const LoginPage = () => {
             console.log("Login correcto")
 
             // Almacenando en localStorage
-            localStorage.setItem("USERNAME", username)
+            sessionStorage.setItem("USERNAME", username)
 
             navigate("/main", {
                 state : {
@@ -52,6 +54,11 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
+        // Valido si esta logueado, caso afirmativo, redirecciono a MainPage
+        if (sessionStorage.getItem("USERNAME") !== null) {
+            navigate("/main")
+            return
+        }
         obtenerUsuariosHTTP()
     }, [])
 
