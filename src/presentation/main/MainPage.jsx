@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button, MenuList, MenuItem, Divider } from "@mui/material"
 import { Container } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from "react";
@@ -53,6 +53,11 @@ const MainPage = () => {
         setModalOpen(false)
     }
 
+    const logoutOnClick = () => {
+        sessionStorage.clear() // Borramos todo lo guardado en el sessionStorage
+        navigate("/")
+    }
+
     useEffect(() => {
         if (sessionStorage.getItem("USERNAME") == null) {
             navigate("/")
@@ -92,14 +97,20 @@ const MainPage = () => {
             anchor="left"
             onClose={ onMenuClose }
             open={ drawerOpen }>
-            <List>
-                <ListItem key={"menu1"}>
-                    <ListItemText primary={"Menu 1"} />
-                </ListItem>
-                <ListItem key={"menu2"}>
-                    <ListItemText primary={"Menu 1"} />
-                </ListItem>
-            </List>
+            <MenuList>
+                <MenuItem key={"menu1"}>
+                    Menu 1
+                </MenuItem>
+                <MenuItem key={"menu2"}>
+                    Menu 2
+                </MenuItem>
+                <Divider />
+                <MenuItem key={"logout"} 
+                    onClick={ logoutOnClick }>
+                    Logout
+                </MenuItem>
+            </MenuList>
+
         </Drawer>
         <Container sx={ { mt : 2 }}>
             <Button variant="contained"
