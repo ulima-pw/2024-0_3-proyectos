@@ -28,7 +28,7 @@ const MainPage = () => {
             console.error(error)
         } )*/
 
-        const response = await fetch("http://localhost:3000/equipos.json")
+        const response = await fetch("http://localhost:8000/proyectos/ver-equipos")
         const data = await response.json()
 
         const listaEquiposStr = JSON.stringify(data)
