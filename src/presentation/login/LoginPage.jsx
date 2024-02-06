@@ -8,18 +8,9 @@ const LoginPage = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loginIncorrecto, setLoginIncorrecto] = useState(false)
-    const [dataUsuarios, setDataUsuarios] = useState([])
 
     // Creamos objeto para navegacion programatica
     const navigate = useNavigate()
-
-    const obtenerUsuariosHTTP = async () => {
-        const response = await fetch("http://localhost:3000/usuarios.json")
-        const data = await response.json()
-        setDataUsuarios(data)
-    }
-
-    
 
     const usernameOnChangeHandler = (event) => {
         setUsername(event.target.value)
@@ -29,15 +20,13 @@ const LoginPage = () => {
         setPassword(event.target.value)
     } 
 
-    const loginOnClick = () => {
-        const listaFiltrada = dataUsuarios.filter((usuario) => {
-            return usuario.username === username && usuario.password === password
-        })
+    const loginOnClick = async () => {
 
-        if (listaFiltrada.length > 0) {
-            // Hay por lo menos un usuario
-            console.log("Login correcto")
+        const response = await fetch(`http://localhost:8000/proyectos/login/${username}/${password}`)
+        const data = await response.json()
 
+        if (data.msg === "") {
+            // Login correcto
             // Almacenando en localStorage
             sessionStorage.setItem("USERNAME", username)
 
@@ -46,9 +35,8 @@ const LoginPage = () => {
                     username : username
                 }
             })
-            
-        }else {
-            console.log("LOGIN INCORRECTO")
+        } else {
+            // Login incorrecto
             setLoginIncorrecto(true)
         }
     }
@@ -59,7 +47,6 @@ const LoginPage = () => {
             navigate("/main")
             return
         }
-        obtenerUsuariosHTTP()
     }, [])
 
     return <Container maxWidth="sm">
