@@ -2,6 +2,7 @@ import { Box, Button, Container, TextField, Alert } from "@mui/material"
 import CheckIcon from "@mui/icons-material/Check"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { FilePresent } from "@mui/icons-material"
 
 
 const LoginPage = () => {
@@ -22,7 +23,16 @@ const LoginPage = () => {
 
     const loginOnClick = async () => {
 
-        const response = await fetch(`http://localhost:8000/proyectos/login/${username}/${password}`)
+        //const response = await fetch(`http://localhost:8000/proyectos/login/${username}/${password}`)
+
+        const formData = new FormData()
+        formData.append("username", username)
+        formData.append("password", password)
+
+        const response = await fetch("http://localhost:8000/proyectos/login", {
+            method : "post",
+            body : formData
+        })
         const data = await response.json()
 
         if (data.msg === "") {
