@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button, MenuList, MenuItem, Divider } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button, MenuList, MenuItem, Divider, TextField } from "@mui/material"
 import { Container } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from "react";
@@ -14,6 +14,7 @@ const MainPage = () => {
     const [dataEquipos, setDataEquipos] = useState([])
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
+    const [filtro, setFiltro] = useState("")
 
     const navigate = useNavigate()
 
@@ -28,7 +29,9 @@ const MainPage = () => {
             console.error(error)
         } )*/
 
-        const response = await fetch("http://localhost:8000/proyectos/ver-equipos")
+        const response = await fetch(
+            `http://localhost:8000/proyectos/ver-equipos?nombre=${filtro}`
+        )
         const data = await response.json()
 
         const listaEquiposStr = JSON.stringify(data)
@@ -64,7 +67,6 @@ const MainPage = () => {
             return
         }
 
-
         const equiposStr = sessionStorage.getItem("EQUIPOS")
         if (equiposStr == null) {
             obtenerEquiposHTTP()
@@ -73,6 +75,10 @@ const MainPage = () => {
             setDataEquipos(equipos)
         }
     }, [])
+
+    useEffect(() => {
+        obtenerEquiposHTTP();
+    }, [filtro])
 
     return <Box>
         <AppBar position="static">
@@ -118,6 +124,14 @@ const MainPage = () => {
                 onClick={ onModalOpenClick }>
                 +
             </Button>
+            <TextField type="text"
+                placeholder="Filtro"
+                sx={ { mb : 2, ml : 2 }}
+                value={ filtro }
+                onChange={ (event) => {
+                    setFiltro(event.target.value) 
+                } }
+                />
             <GrillaEquipos listaEquipos={ dataEquipos }/>
         </Container>
 
