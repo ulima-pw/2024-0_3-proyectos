@@ -25,13 +25,18 @@ const LoginPage = () => {
 
         //const response = await fetch(`http://localhost:8000/proyectos/login/${username}/${password}`)
 
-        const formData = new FormData()
+        /*const formData = new FormData()
         formData.append("username", username)
-        formData.append("password", password)
+        formData.append("password", password)*/
 
-        const response = await fetch("http://localhost:8000/proyectos/login", {
+        const dataUsername = {
+            username : username,
+            password : password
+        }
+
+        const response = await fetch("http://localhost:8000/proyectos/login-json", {
             method : "post",
-            body : formData
+            body : JSON.stringify(dataUsername)
         })
         const data = await response.json()
 
