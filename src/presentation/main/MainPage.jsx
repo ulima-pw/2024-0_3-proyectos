@@ -1,4 +1,4 @@
-import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Button, MenuList, MenuItem, Divider, TextField, Select, InputLabel } from "@mui/material"
+import { Box, AppBar, Toolbar, IconButton, Typography, Drawer, Button, MenuList, MenuItem, Divider, TextField, Select } from "@mui/material"
 import { Container } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useState } from "react";
@@ -39,6 +39,22 @@ const MainPage = () => {
         sessionStorage.setItem("EQUIPOS", listaEquiposStr)
 
         setDataEquipos(data)
+    }
+
+    const guardarEquipoHTTP = async (equipo) => {
+        const response = await fetch("http://localhost:8000/proyectos/equipo", {
+            method : "post",
+            body : JSON.stringify({
+                nombre : equipo.nombre,
+                anho : equipo.anho
+            })
+        })
+        const data = await response.json()
+
+        if (data.msg === "") {
+            // Todo OK
+            setModalOpen(false)
+        }
     }
 
     const onMenuIconClick = () => {
@@ -146,6 +162,7 @@ const MainPage = () => {
         { /* Modal */  }
         <ModalFormularioEquipo 
             modalOpen={ modalOpen }
+            onRegistrarEquipo={ guardarEquipoHTTP }
             onModalClose={ onModalClose }/>
     </Box>
 }
