@@ -7,9 +7,6 @@ import ModalFormularioEquipo from "./components/ModalFormularioEquipo";
 import { useNavigate } from "react-router-dom";
 //import { useLocation } from "react-router-dom";
 
-
-
-
 const MainPage = () => {
     const [dataEquipos, setDataEquipos] = useState([])
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -94,8 +91,11 @@ const MainPage = () => {
     }, [])
 
     useEffect(() => {
-        obtenerEquiposHTTP();
-    }, [filtro, filtroAnho])
+        if (modalOpen == false){
+            obtenerEquiposHTTP();
+        }
+        
+    }, [filtro, filtroAnho, modalOpen])
 
     return <Box>
         <AppBar position="static">
@@ -162,7 +162,7 @@ const MainPage = () => {
         { /* Modal */  }
         <ModalFormularioEquipo 
             modalOpen={ modalOpen }
-            onRegistrarEquipo={ guardarEquipoHTTP }
+            onRegistrarEquipo={ guardarEquipoHTTP}
             onModalClose={ onModalClose }/>
     </Box>
 }
