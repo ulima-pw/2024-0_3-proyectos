@@ -54,6 +54,15 @@ const MainPage = () => {
         }
     }
 
+    const eliminarEquipoHTTP = async (idEquipo) => {
+        const response = await fetch(`http://localhost:8000/proyectos/eliminar-equipo?id=${idEquipo}`)
+        const data = await response.json()
+
+        if (data.msg === "") {
+            window.location.reload()
+        }
+    }
+
     const onMenuIconClick = () => {
         setDrawerOpen(true)
     }
@@ -156,7 +165,8 @@ const MainPage = () => {
                 <MenuItem value={"2023"}>2023</MenuItem>
                 <MenuItem value={"2024"}>2024</MenuItem>
             </Select>
-            <GrillaEquipos listaEquipos={ dataEquipos }/>
+            <GrillaEquipos listaEquipos={ dataEquipos }
+                eliminarEquipo={ eliminarEquipoHTTP }/>
         </Container>
 
         { /* Modal */  }

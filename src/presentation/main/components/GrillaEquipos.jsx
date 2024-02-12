@@ -6,8 +6,10 @@ const GrillaEquipos = (props) => {
         {
             props.listaEquipos.map( (equipo)=>{
                 return <Grid xs={4} key={equipo.nombre}>
-                    <CardEquipo nombreEquipo={equipo.nombre}
-                        listaIntegrantes={equipo.integrantes} />
+                    <CardEquipo idEquipo={equipo.id} 
+                        nombreEquipo={equipo.nombre}
+                        listaIntegrantes={equipo.integrantes}
+                        eliminarEquipo={ props.eliminarEquipo } />
                 </Grid>
             })
         }
