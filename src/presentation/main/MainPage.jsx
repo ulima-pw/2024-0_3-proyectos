@@ -39,11 +39,13 @@ const MainPage = () => {
     }
 
     const guardarEquipoHTTP = async (equipo) => {
+        console.log(equipo)
         const response = await fetch("http://localhost:8000/proyectos/equipo", {
             method : "post",
             body : JSON.stringify({
                 nombre : equipo.nombre,
-                anho : equipo.anho
+                anho : equipo.anho,
+                integrantes: equipo.integrantes
             })
         })
         const data = await response.json()

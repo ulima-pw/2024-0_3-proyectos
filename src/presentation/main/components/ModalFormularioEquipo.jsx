@@ -51,7 +51,8 @@ const ModalFormularioEquipo = (props) => {
     const registrarEquipo = () => {
         props.onRegistrarEquipo({
             nombre : nombreEquipo,
-            anho : anhoEquipo
+            anho : anhoEquipo,
+            integrantes: listaIntegrantes
         })
     }
 
