@@ -10,6 +10,10 @@ const ModalFormularioEquipo = (props) => {
     const [nombreIntegrante, setNombreIntegrante] = useState("")
     const [codigoIntegrante, setCodigoIntegrante] = useState("")
     const [listaIntegrantes, setListaIntegrantes] = useState([])
+    const [cursosRegistrados, setCursosRegistrados] = useState([])
+    const [cursoSeleccionado, setCursoSeleccionado] = useState(null)
+    const [cursoSeleccionadoInput, setCursoSeleccionadoInput] = useState("")
+    const [cursosDisponibles, setCursosDisponibles] = useState(props.cursosDisponibles)
 
     const onNombreIntegranteChangeHandler = (event) => {
         setNombreIntegrante(event.target.value)
@@ -56,6 +60,8 @@ const ModalFormularioEquipo = (props) => {
         })
     }
 
+    console.log("cursosDisponibles:", cursosDisponibles)
+
     return <Dialog
         open={ props.modalOpen }
         onClose={ props.onModalClose }>
@@ -74,16 +80,43 @@ const ModalFormularioEquipo = (props) => {
             <hr/>
             <div>
                 <Autocomplete 
-                    options={[ { "label": "op1" }, { "label": "op2" }]}
+                    options={ cursosDisponibles.map((curso) =>{
+                        return { label : curso.nombre, id: curso.id } 
+                    }) }
                     sx={{ width: 300, display : "inline-flex", mr : 2 }}
-                    renderInput={(params) => <TextField {...params} label="Cursos" /> }
+                    renderInput={(params) => 
+                        <TextField {...params}
+                            label="Cursos" /> }
+                    value={ cursoSeleccionado }
+                    onChange={ (event, newValue) => {
+                        setCursoSeleccionado(newValue)
+                    } }
+                    inputValue={ cursoSeleccionadoInput }
+                    onInputChange={ (event, newInputValue) => {
+                        setCursoSeleccionadoInput(newInputValue)
+                    } }
                     />
-                <Button variant="contained">
+                <Button variant="contained"
+                    onClick={ () => {
+                        console.log(cursoSeleccionado)
+                        const cursosRegistradosClon = [...cursosRegistrados]
+                        cursosRegistradosClon.push(cursoSeleccionado)
+
+                        const cursosDispFiltrados = cursosDisponibles.filter( (c) => {
+                            return c.id !== cursoSeleccionado.id 
+                        })
+                        setCursosDisponibles(cursosDispFiltrados)
+                        setCursosRegistrados(cursosRegistradosClon)
+                    } }>
                     +
                 </Button>
             </div>
             <ul>
-                <li>Opcion 1</li>
+                {
+                    cursosRegistrados.map((cr) => {
+                        return <li>{ cr.label }</li>
+                    })
+                }
             </ul>
 
             <hr />

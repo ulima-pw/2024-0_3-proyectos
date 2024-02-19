@@ -13,6 +13,7 @@ const MainPage = () => {
     const [modalOpen, setModalOpen] = useState(false)
     const [filtro, setFiltro] = useState("")
     const [filtroAnho, setFiltroAnho] = useState("-")
+    const [cursosDisponibles, setCursosDisponibles] = useState([])
 
     const navigate = useNavigate()
 
@@ -65,6 +66,16 @@ const MainPage = () => {
         }
     }
 
+    const obtenerCursosDisponiblesHTTP = async () => {
+        const response = await fetch(`http://localhost:8000/proyectos/ver-cursos`)
+        const data = await response.json()
+
+        if (data.msg === "") {
+            console.log("actualiza")
+            setCursosDisponibles(data.cursos)
+        }
+    }
+
     const onMenuIconClick = () => {
         setDrawerOpen(true)
     }
@@ -87,6 +98,8 @@ const MainPage = () => {
     }
 
     useEffect(() => {
+        obtenerCursosDisponiblesHTTP()
+
         if (sessionStorage.getItem("USERNAME") == null) {
             navigate("/")
             return
@@ -174,6 +187,7 @@ const MainPage = () => {
         { /* Modal */  }
         <ModalFormularioEquipo 
             modalOpen={ modalOpen }
+            cursosDisponibles={ cursosDisponibles }
             onRegistrarEquipo={ guardarEquipoHTTP}
             onModalClose={ onModalClose }/>
     </Box>
