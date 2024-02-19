@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, 
+import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, 
     TextField } from "@mui/material"
 import { useState } from "react";
 
@@ -71,6 +71,21 @@ const ModalFormularioEquipo = (props) => {
                 variant="outlined"
                 value={ anhoEquipo }
                 onChange={ onAnhoEquipoChangeHandler } />
+            <hr/>
+            <div>
+                <Autocomplete 
+                    options={[ { "label": "op1" }, { "label": "op2" }]}
+                    sx={{ width: 300, display : "inline-flex", mr : 2 }}
+                    renderInput={(params) => <TextField {...params} label="Cursos" /> }
+                    />
+                <Button variant="contained">
+                    +
+                </Button>
+            </div>
+            <ul>
+                <li>Opcion 1</li>
+            </ul>
+
             <hr />
             <h4>Integrantes</h4>
             <TextField label="Nombre Integrante"
