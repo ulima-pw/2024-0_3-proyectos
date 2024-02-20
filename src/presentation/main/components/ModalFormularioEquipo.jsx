@@ -1,5 +1,6 @@
 import { Autocomplete, Button, Dialog, DialogActions, DialogContent, DialogTitle, 
     TextField } from "@mui/material"
+import { useEffect } from "react";
 import { useState } from "react";
 
 import TablaIntegrantes from "./TablaIntegrantes";
@@ -13,7 +14,7 @@ const ModalFormularioEquipo = (props) => {
     const [cursosRegistrados, setCursosRegistrados] = useState([])
     const [cursoSeleccionado, setCursoSeleccionado] = useState(null)
     const [cursoSeleccionadoInput, setCursoSeleccionadoInput] = useState("")
-    const [cursosDisponibles, setCursosDisponibles] = useState(props.cursosDisponibles)
+    const [cursosDisponibles, setCursosDisponibles] = useState([])
 
     const onNombreIntegranteChangeHandler = (event) => {
         setNombreIntegrante(event.target.value)
@@ -60,6 +61,10 @@ const ModalFormularioEquipo = (props) => {
         })
     }
 
+    useEffect(() => {
+        setCursosDisponibles(props.cursosDisponibles)
+    }, [props.cursosDisponibles])
+
     console.log("cursosDisponibles:", cursosDisponibles)
 
     return <Dialog
@@ -98,13 +103,15 @@ const ModalFormularioEquipo = (props) => {
                     />
                 <Button variant="contained"
                     onClick={ () => {
-                        console.log(cursoSeleccionado)
                         const cursosRegistradosClon = [...cursosRegistrados]
                         cursosRegistradosClon.push(cursoSeleccionado)
 
                         const cursosDispFiltrados = cursosDisponibles.filter( (c) => {
                             return c.id !== cursoSeleccionado.id 
                         })
+
+                        setCursoSeleccionado(null)
+                        setCursoSeleccionadoInput("")
                         setCursosDisponibles(cursosDispFiltrados)
                         setCursosRegistrados(cursosRegistradosClon)
                     } }>
