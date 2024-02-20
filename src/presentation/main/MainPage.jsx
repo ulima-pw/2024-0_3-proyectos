@@ -46,7 +46,8 @@ const MainPage = () => {
             body : JSON.stringify({
                 nombre : equipo.nombre,
                 anho : equipo.anho,
-                integrantes: equipo.integrantes
+                integrantes: equipo.integrantes,
+                cursos : equipo.cursos
             })
         })
         const data = await response.json()

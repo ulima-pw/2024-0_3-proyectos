@@ -11,9 +11,9 @@ const ModalFormularioEquipo = (props) => {
     const [nombreIntegrante, setNombreIntegrante] = useState("")
     const [codigoIntegrante, setCodigoIntegrante] = useState("")
     const [listaIntegrantes, setListaIntegrantes] = useState([])
-    const [cursosRegistrados, setCursosRegistrados] = useState([])
     const [cursoSeleccionado, setCursoSeleccionado] = useState(null)
     const [cursoSeleccionadoInput, setCursoSeleccionadoInput] = useState("")
+    const [cursosRegistrados, setCursosRegistrados] = useState([])
     const [cursosDisponibles, setCursosDisponibles] = useState([])
 
     const onNombreIntegranteChangeHandler = (event) => {
@@ -57,7 +57,8 @@ const ModalFormularioEquipo = (props) => {
         props.onRegistrarEquipo({
             nombre : nombreEquipo,
             anho : anhoEquipo,
-            integrantes: listaIntegrantes
+            integrantes: listaIntegrantes,
+            cursos : cursosRegistrados.map((curso) => curso.id )
         })
     }
 
